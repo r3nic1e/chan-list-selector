@@ -6,7 +6,8 @@ import (
 )
 
 var (
-	InvalidValueError = errors.New("provided value is not a channel")
+	// ErrorInvalidValue provided value is not a channel
+	ErrorInvalidValue = errors.New("provided value is not a channel")
 )
 
 //ChanListSelector allows to select from multiple channels
@@ -25,7 +26,7 @@ func isChan(c interface{}) bool {
 // It will return error if provided value is not a channel
 func (c *ChanListSelector) AddChan(ch interface{}) error {
 	if !isChan(ch) {
-		return InvalidValueError
+		return ErrorInvalidValue
 	}
 
 	c.chans = append(c.chans, reflect.ValueOf(ch))
