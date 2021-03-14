@@ -10,8 +10,12 @@ func ExampleChanListSelector_Select() {
 	t := time.NewTicker(time.Second)
 
 	selector := &ChanListSelector{}
-	selector.AddChan(t)
-	selector.AddChan(ch)
+	if err := selector.AddChan(t); err != nil {
+		panic(err)
+	}
+	if err := selector.AddChan(ch); err != nil {
+		panic(err)
+	}
 
 	for {
 		chosen, value, remaining := selector.Select()
